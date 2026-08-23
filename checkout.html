@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Samriddhi Atta Chakki</title>
+  <meta name="description" content="Complete your order for fresh flour delivery from Samriddhi Atta Chakki.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <div class="navbar__logo-icon">🌾</div>
+        <div class="navbar__logo-text">Samriddhi<span>Atta Chakki</span></div>
+      </a>
+      <div class="navbar__links" id="navLinks">
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="products.html" class="navbar__link">Products</a>
+        <a href="index.html#contact" class="navbar__link">Contact</a>
+        <a href="order-tracking.html" class="navbar__link">Track Order</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="cart.html" class="navbar__cart-btn" id="cartBtn">🛒<span class="navbar__cart-badge" id="cartBadge">0</span></a>
+        <div class="navbar__toggle" id="navToggle"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="checkout-page page-transition">
+    <div class="page-header" style="background: var(--gradient-hero);">
+      <h1>Checkout</h1>
+      <p>Almost there! Complete your order details</p>
+    </div>
+
+    <div class="container">
+      <div class="checkout-layout" id="checkoutLayout">
+        <!-- Checkout Form -->
+        <div>
+          <form class="checkout-form" id="checkoutForm">
+            <!-- Section 1: Delivery Address -->
+            <div class="checkout-form__section">
+              <div class="checkout-form__section-title">
+                <span class="step-num">1</span> Delivery Address
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="customerName">Full Name *</label>
+                  <input type="text" class="form-input" id="customerName" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="phone">Phone Number *</label>
+                  <input type="tel" class="form-input" id="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="address">Full Address *</label>
+                <textarea class="form-textarea" id="address" placeholder="House No, Street, Area, Landmark" required style="min-height:80px;"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="city">City *</label>
+                  <input type="text" class="form-input" id="city" placeholder="City" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="pincode">Pincode *</label>
+                  <input type="text" class="form-input" id="pincode" placeholder="6-digit pincode" maxlength="6" pattern="[0-9]{6}" required>
+                </div>
+              </div>
+              <div id="deliveryRateInfo" style="padding:var(--space-3) var(--space-4);background:var(--color-accent-50);border-radius:var(--radius-lg);font-size:var(--text-sm);display:none;"></div>
+            </div>
+
+            <!-- Section 2: Payment Method -->
+            <div class="checkout-form__section">
+              <div class="checkout-form__section-title">
+                <span class="step-num">2</span> Payment Method
+              </div>
+              <div class="payment-methods">
+                <label class="payment-method active" id="pm-cod">
+                  <input type="radio" name="paymentMode" value="cod" checked>
+                  <div>
+                    <div class="payment-method__label">💵 Cash on Delivery (COD)</div>
+                    <div class="payment-method__desc">Pay when you receive your order</div>
+                  </div>
+                </label>
+                <label class="payment-method" id="pm-upi">
+                  <input type="radio" name="paymentMode" value="upi">
+                  <div>
+                    <div class="payment-method__label">📱 UPI Payment</div>
+                    <div class="payment-method__desc">Pay via Google Pay / PhonePe / Paytm</div>
+                  </div>
+                </label>
+                <label class="payment-method" id="pm-whatsapp">
+                  <input type="radio" name="paymentMode" value="whatsapp">
+                  <div>
+                    <div class="payment-method__label">💬 WhatsApp Order</div>
+                    <div class="payment-method__desc">Send order via WhatsApp and pay later</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Place Order Button -->
+            <button type="submit" class="btn btn--accent btn--lg btn--full" id="placeOrderBtn">
+              ✓ Place Order
+            </button>
+          </form>
+        </div>
+
+        <!-- Order Summary Sidebar -->
+        <div class="order-summary">
+          <div class="order-summary__card">
+            <h3 class="cart-summary__title">Order Summary</h3>
+            <div id="orderItems">
+              <!-- Rendered by JS -->
+            </div>
+            <div class="cart-summary__row" style="margin-top:var(--space-4);">
+              <span class="label">Subtotal</span>
+              <span class="value" id="checkoutSubtotal">₹0</span>
+            </div>
+            <div class="cart-summary__row">
+              <span class="label">Delivery</span>
+              <span class="value" id="checkoutDelivery">—</span>
+            </div>
+            <div class="cart-summary__total">
+              <span class="label">Total</span>
+              <span class="value" id="checkoutTotal">₹0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Success (Hidden) -->
+      <div id="orderSuccess" style="display:none;">
+        <div class="empty-state" style="padding:var(--space-20) var(--space-6);">
+          <div class="empty-state__icon" style="font-size:5rem;">🎉</div>
+          <h2 style="color:var(--color-accent-500);margin-bottom:var(--space-4);">Order Placed Successfully!</h2>
+          <p class="empty-state__desc" style="max-width:500px;margin:0 auto var(--space-4);">
+            Thank you for your order! You will receive a confirmation shortly.
+          </p>
+          <div style="background:var(--color-bg-alt);border-radius:var(--radius-xl);padding:var(--space-6);display:inline-block;margin-bottom:var(--space-8);">
+            <div style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-2);">Your Order ID</div>
+            <div style="font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:var(--weight-bold);color:var(--color-primary-600);" id="successOrderId">—</div>
+          </div>
+          <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+            <a href="order-tracking.html" class="btn btn--primary btn--lg">📦 Track Order</a>
+            <a href="products.html" class="btn btn--secondary btn--lg">Continue Shopping →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border-top:none;padding-top:var(--space-4);">
+        <div>© 2024 Samriddhi Atta Chakki. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/checkout-page.js"></script>
+</body>
+</html>

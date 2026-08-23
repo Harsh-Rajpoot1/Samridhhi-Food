@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Samriddhi Atta Chakki</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+</head>
+<body>
+  <div class="admin-page">
+    <!-- ===== LOGIN SCREEN ===== -->
+    <div class="admin-login" id="adminLogin">
+      <div class="admin-login__card">
+        <div class="admin-login__logo">
+          <div class="navbar__logo-icon" style="margin:0 auto;width:56px;height:56px;font-size:var(--text-2xl);">🌾</div>
+          <h2>Admin Panel</h2>
+          <p>Samriddhi Atta Chakki</p>
+        </div>
+        <div class="admin-login__error" id="loginError">Invalid credentials</div>
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label" for="loginEmail">Email</label>
+            <input type="email" class="form-input" id="loginEmail" placeholder="admin@samriddhiatta.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="loginPassword">Password</label>
+            <input type="password" class="form-input" id="loginPassword" placeholder="Enter password" required>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg btn--full" id="loginBtn">🔑 Sign In</button>
+        </form>
+        <p style="text-align:center;margin-top:var(--space-6);font-size:var(--text-sm);color:var(--color-text-muted);">
+          Demo: Use any email & password<br>(Firebase Auth not configured yet)
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== DASHBOARD ===== -->
+    <div id="adminDashboard" style="display:none;">
+      <!-- Sidebar -->
+      <aside class="admin-sidebar" id="adminSidebar">
+        <a href="index.html" class="admin-sidebar__logo">
+          <div class="admin-sidebar__logo-icon">🌾</div>
+          <div class="admin-sidebar__logo-text">
+            Samriddhi
+            <small>Admin Panel</small>
+          </div>
+        </a>
+
+        <nav class="admin-sidebar__nav">
+          <div class="admin-sidebar__section">
+            <div class="admin-sidebar__section-title">Main</div>
+            <a class="admin-nav-link active" data-section="dashboard" onclick="switchSection('dashboard')">
+              <span class="icon">📊</span> Dashboard
+            </a>
+            <a class="admin-nav-link" data-section="products" onclick="switchSection('products')">
+              <span class="icon">📦</span> Products
+            </a>
+            <a class="admin-nav-link" data-section="orders" onclick="switchSection('orders')">
+              <span class="icon">🛒</span> Orders
+              <span class="nav-badge" id="pendingOrdersBadge" style="display:none;">0</span>
+            </a>
+          </div>
+          <div class="admin-sidebar__section">
+            <div class="admin-sidebar__section-title">Settings</div>
+            <a class="admin-nav-link" data-section="delivery" onclick="switchSection('delivery')">
+              <span class="icon">🚚</span> Delivery Rates
+            </a>
+            <a class="admin-nav-link" data-section="settings" onclick="switchSection('settings')">
+              <span class="icon">⚙️</span> Store Settings
+            </a>
+          </div>
+        </nav>
+
+        <div class="admin-sidebar__logout">
+          <a class="admin-nav-link" id="logoutBtn" style="color:rgba(245,230,216,0.4);">
+            <span class="icon">🚪</span> Logout
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="admin-main" id="adminMain">
+        <!-- Mobile sidebar toggle -->
+        <button class="btn btn--ghost" id="sidebarToggle" style="display:none;margin-bottom:var(--space-4);font-size:var(--text-lg);">☰ Menu</button>
+
+        <!-- ===== DASHBOARD OVERVIEW ===== -->
+        <div class="admin-section active" id="section-dashboard">
+          <div class="admin-header">
+            <div>
+              <h1>Dashboard</h1>
+              <div class="admin-header__subtitle">Welcome back! Here's your business overview.</div>
+            </div>
+            <a href="index.html" class="btn btn--secondary btn--sm" target="_blank">🌐 View Website</a>
+          </div>
+
+          <div class="dashboard-stats" id="dashboardStats">
+            <div class="stat-card">
+              <div class="stat-card__header">
+                <div class="stat-card__icon stat-card__icon--amber">📦</div>
+              </div>
+              <div class="stat-card__value" id="statTotalOrders">0</div>
+              <div class="stat-card__label">Total Orders</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__header">
+                <div class="stat-card__icon stat-card__icon--green">💰</div>
+              </div>
+              <div class="stat-card__value" id="statRevenue">₹0</div>
+              <div class="stat-card__label">Total Revenue</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__header">
+                <div class="stat-card__icon stat-card__icon--blue">⏳</div>
+              </div>
+              <div class="stat-card__value" id="statPending">0</div>
+              <div class="stat-card__label">Pending Orders</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__header">
+                <div class="stat-card__icon stat-card__icon--red">🛍️</div>
+              </div>
+              <div class="stat-card__value" id="statProducts">0</div>
+              <div class="stat-card__label">Products</div>
+            </div>
+          </div>
+
+          <!-- Recent Orders -->
+          <div class="admin-card">
+            <div class="admin-card__header">
+              <h3 class="admin-card__title">Recent Orders</h3>
+              <button class="btn btn--ghost btn--sm" onclick="switchSection('orders')">View All →</button>
+            </div>
+            <div class="admin-card__body" style="padding:0;">
+              <div class="table-wrapper">
+                <table class="table" id="recentOrdersTable">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer</th>
+                      <th>Items</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recentOrdersBody">
+                    <!-- Rendered by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PRODUCTS MANAGEMENT ===== -->
+        <div class="admin-section" id="section-products">
+          <div class="admin-header">
+            <div>
+              <h1>Products</h1>
+              <div class="admin-header__subtitle">Manage your product catalog</div>
+            </div>
+            <button class="btn btn--primary" id="addProductBtn">+ Add Product</button>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card__body" style="padding:0;">
+              <div class="table-wrapper">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Category</th>
+                      <th>Variants</th>
+                      <th>Featured</th>
+                      <th>Stock</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="productsTableBody">
+                    <!-- Rendered by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== ORDERS MANAGEMENT ===== -->
+        <div class="admin-section" id="section-orders">
+          <div class="admin-header">
+            <div>
+              <h1>Orders</h1>
+              <div class="admin-header__subtitle">Manage customer orders</div>
+            </div>
+            <div style="display:flex;gap:var(--space-2);">
+              <select class="form-select" id="orderStatusFilter" style="width:auto;padding:var(--space-2) var(--space-8) var(--space-2) var(--space-3);font-size:var(--text-sm);">
+                <option value="all">All Orders</option>
+                <option value="placed">Placed</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="processing">Processing</option>
+                <option value="out_for_delivery">Out for Delivery</option>
+                <option value="delivered">Delivered</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card__body" style="padding:0;">
+              <div class="table-wrapper">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer</th>
+                      <th>Phone</th>
+                      <th>Items</th>
+                      <th>Total</th>
+                      <th>Payment</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ordersTableBody">
+                    <!-- Rendered by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== DELIVERY RATES ===== -->
+        <div class="admin-section" id="section-delivery">
+          <div class="admin-header">
+            <div>
+              <h1>Delivery Rates</h1>
+              <div class="admin-header__subtitle">Manage delivery zones and pricing</div>
+            </div>
+            <button class="btn btn--primary" id="addZoneBtn">+ Add Zone</button>
+          </div>
+
+          <div id="deliveryZonesList">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- ===== STORE SETTINGS ===== -->
+        <div class="admin-section" id="section-settings">
+          <div class="admin-header">
+            <div>
+              <h1>Store Settings</h1>
+              <div class="admin-header__subtitle">Update your store information</div>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card__body">
+              <form id="settingsForm">
+                <div class="product-form-grid">
+                  <div class="form-group">
+                    <label class="form-label">Store Name</label>
+                    <input type="text" class="form-input" id="settingStoreName" value="Samriddhi Atta Chakki">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" class="form-input" id="settingPhone" value="+91 98765 43210">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">WhatsApp Number</label>
+                    <input type="text" class="form-input" id="settingWhatsapp" value="+919876543210">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Free Delivery Threshold (₹)</label>
+                    <input type="number" class="form-input" id="settingFreeDelivery" value="500">
+                  </div>
+                  <div class="form-group full-width">
+                    <label class="form-label">Store Address</label>
+                    <textarea class="form-textarea" id="settingAddress">Main Market Road, Near Bus Stand, Indore, MP 452001</textarea>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn--primary">💾 Save Settings</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== PRODUCT MODAL ===== -->
+    <div class="modal-overlay" id="productModal">
+      <div class="modal" style="max-width:650px;">
+        <div class="modal__header">
+          <h3 class="modal__title" id="productModalTitle">Add Product</h3>
+          <button class="btn btn--ghost btn--icon" onclick="closeProductModal()">✕</button>
+        </div>
+        <div class="modal__body">
+          <form id="productForm">
+            <div class="product-form-grid">
+              <div class="form-group">
+                <label class="form-label">Product Name *</label>
+                <input type="text" class="form-input" id="prodName" placeholder="e.g. Premium Wheat Atta" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category *</label>
+                <select class="form-select" id="prodCategory" required>
+                  <option value="wheat">Wheat Atta</option>
+                  <option value="multigrain">Multigrain</option>
+                  <option value="besan">Besan</option>
+                  <option value="maida">Maida</option>
+                  <option value="rice">Rice Flour</option>
+                  <option value="millet">Millet Flour</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label class="form-label">Description</label>
+                <textarea class="form-textarea" id="prodDesc" placeholder="Describe your product..." style="min-height:60px;"></textarea>
+              </div>
+              <div class="form-group full-width">
+                <label class="form-label">Price Variants *</label>
+                <div class="variant-list" id="variantList">
+                  <div class="variant-row">
+                    <input type="text" class="form-input" placeholder="Weight (e.g. 1 kg)" style="width:40%;">
+                    <input type="number" class="form-input" placeholder="Price (₹)" style="width:40%;">
+                    <button type="button" class="btn btn--ghost btn--icon btn--sm" onclick="this.parentElement.remove()">✕</button>
+                  </div>
+                </div>
+                <button type="button" class="btn btn--ghost btn--sm" onclick="addVariantRow()" style="margin-top:var(--space-2);">+ Add Variant</button>
+              </div>
+              <div class="form-group">
+                <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;">
+                  <input type="checkbox" id="prodFeatured" style="accent-color:var(--color-primary-500);width:18px;height:18px;">
+                  <span class="form-label" style="margin:0;">Featured Product</span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer;">
+                  <input type="checkbox" id="prodInStock" checked style="accent-color:var(--color-success);width:18px;height:18px;">
+                  <span class="form-label" style="margin:0;">In Stock</span>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--ghost" onclick="closeProductModal()">Cancel</button>
+          <button class="btn btn--primary" id="saveProductBtn">💾 Save Product</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DELIVERY ZONE MODAL ===== -->
+    <div class="modal-overlay" id="zoneModal">
+      <div class="modal">
+        <div class="modal__header">
+          <h3 class="modal__title" id="zoneModalTitle">Add Delivery Zone</h3>
+          <button class="btn btn--ghost btn--icon" onclick="closeZoneModal()">✕</button>
+        </div>
+        <div class="modal__body">
+          <form id="zoneForm">
+            <div class="form-group">
+              <label class="form-label">Zone Name *</label>
+              <input type="text" class="form-input" id="zoneName" placeholder="e.g. Local, Nearby, Extended" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Pincodes (comma-separated) *</label>
+              <textarea class="form-textarea" id="zonePincodes" placeholder="452001, 452002, 452003" style="min-height:60px;" required></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Delivery Rate (₹) *</label>
+              <input type="number" class="form-input" id="zoneRate" placeholder="30" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Free delivery above (₹)</label>
+              <input type="number" class="form-input" id="zoneFreeAbove" placeholder="500">
+            </div>
+          </form>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--ghost" onclick="closeZoneModal()">Cancel</button>
+          <button class="btn btn--primary" id="saveZoneBtn">💾 Save Zone</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ORDER DETAIL MODAL ===== -->
+    <div class="modal-overlay" id="orderDetailModal">
+      <div class="modal" style="max-width:600px;">
+        <div class="modal__header">
+          <h3 class="modal__title">Order Details</h3>
+          <button class="btn btn--ghost btn--icon" onclick="document.getElementById('orderDetailModal').classList.remove('active')">✕</button>
+        </div>
+        <div class="modal__body" id="orderDetailBody">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/admin-page.js"></script>
+</body>
+</html>

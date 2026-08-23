@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+.env
+.env.*
+.gemini/
+.agents/
+.vscode/
+package-lock.json.log
+*.log

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order — Samriddhi Atta Chakki</title>
+  <meta name="description" content="Track your Samriddhi Atta Chakki order status in real-time.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+</head>
+<body>
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <div class="navbar__logo-icon">🌾</div>
+        <div class="navbar__logo-text">Samriddhi<span>Atta Chakki</span></div>
+      </a>
+      <div class="navbar__links" id="navLinks">
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="products.html" class="navbar__link">Products</a>
+        <a href="index.html#contact" class="navbar__link">Contact</a>
+        <a href="order-tracking.html" class="navbar__link active">Track Order</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="cart.html" class="navbar__cart-btn" id="cartBtn">🛒<span class="navbar__cart-badge" id="cartBadge">0</span></a>
+        <div class="navbar__toggle" id="navToggle"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="tracking-page page-transition">
+    <div class="page-header" style="background: var(--gradient-hero);">
+      <h1>Track Your Order</h1>
+      <p>Enter your Order ID or phone number to check status</p>
+    </div>
+
+    <div class="container">
+      <div class="tracking-search" id="trackingSearch">
+        <input type="text" class="form-input" id="trackInput" placeholder="Order ID (e.g. SAC-XXXX) or Phone Number" style="font-size:var(--text-lg);">
+        <button class="btn btn--primary btn--lg" id="trackBtn">🔍 Track</button>
+      </div>
+
+      <!-- Tracking Result -->
+      <div class="tracking-result" id="trackingResult" style="display:none;">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Not Found -->
+      <div id="trackingNotFound" style="display:none;">
+        <div class="empty-state">
+          <div class="empty-state__icon">🔍</div>
+          <h3 class="empty-state__title">Order Not Found</h3>
+          <p class="empty-state__desc">We couldn't find an order with that ID or phone number. Please check and try again.</p>
+          <a href="https://wa.me/919876543210?text=Hi! I need help tracking my order" target="_blank" class="btn btn--accent btn--lg">💬 Contact on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border-top:none;padding-top:var(--space-4);">
+        <div>© 2024 Samriddhi Atta Chakki. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/tracking-page.js"></script>
+</body>
+</html>

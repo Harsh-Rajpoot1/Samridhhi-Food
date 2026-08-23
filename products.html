@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Samriddhi Atta Chakki</title>
+  <meta name="description" content="Browse our full range of stone-ground flours: wheat atta, multigrain, besan, maida, rice flour, and millet flour.">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <div class="navbar__logo-icon">🌾</div>
+        <div class="navbar__logo-text">Samriddhi<span>Atta Chakki</span></div>
+      </a>
+      <div class="navbar__links" id="navLinks">
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="products.html" class="navbar__link active">Products</a>
+        <a href="index.html#why-us" class="navbar__link">About</a>
+        <a href="index.html#contact" class="navbar__link">Contact</a>
+        <a href="order-tracking.html" class="navbar__link">Track Order</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="cart.html" class="navbar__cart-btn" id="cartBtn">🛒<span class="navbar__cart-badge" id="cartBadge">0</span></a>
+        <div class="navbar__toggle" id="navToggle"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="products-page page-transition">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>Our Products</h1>
+      <p>Freshly ground, preservative-free flour for your family</p>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar" id="filterBar">
+      <div class="container">
+        <div class="filter-bar__inner">
+          <div class="filter-bar__categories" id="categoryFilters">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="wheat">🌾 Wheat Atta</button>
+            <button class="filter-btn" data-category="multigrain">🌿 Multigrain</button>
+            <button class="filter-btn" data-category="besan">🫘 Besan</button>
+            <button class="filter-btn" data-category="maida">🍚 Maida</button>
+            <button class="filter-btn" data-category="rice">🍙 Rice Flour</button>
+            <button class="filter-btn" data-category="millet">🌱 Millet Flour</button>
+          </div>
+          <div class="filter-bar__search">
+            <span class="icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Search products...">
+          </div>
+          <div class="filter-bar__sort">
+            <label>Sort:</label>
+            <select class="form-select" id="sortSelect" style="width:auto;padding:var(--space-2) var(--space-8) var(--space-2) var(--space-3);font-size:var(--text-sm);">
+              <option value="default">Default</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="name">Name: A-Z</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="container">
+      <div class="products-info">
+        <div class="products-info__count" id="productsCount">Showing all products</div>
+      </div>
+      <div class="products-grid stagger-children" id="productsGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="navbar__logo" style="display:inline-flex;margin-bottom:var(--space-2);">
+            <div class="navbar__logo-icon">🌾</div>
+            <div class="navbar__logo-text" style="color:var(--color-text-on-dark);">Samriddhi<span>Atta Chakki</span></div>
+          </a>
+          <p class="footer__brand-desc">Your trusted flour mill delivering fresh, stone-ground atta since 2015.</p>
+        </div>
+        <div>
+          <div class="footer__heading">Quick Links</div>
+          <a href="index.html" class="footer__link">Home</a>
+          <a href="products.html" class="footer__link">Products</a>
+          <a href="cart.html" class="footer__link">Cart</a>
+          <a href="order-tracking.html" class="footer__link">Track Order</a>
+        </div>
+        <div>
+          <div class="footer__heading">Products</div>
+          <a href="products.html?cat=wheat" class="footer__link">Wheat Atta</a>
+          <a href="products.html?cat=multigrain" class="footer__link">Multigrain</a>
+          <a href="products.html?cat=besan" class="footer__link">Besan</a>
+          <a href="products.html?cat=millet" class="footer__link">Millet Flour</a>
+        </div>
+        <div>
+          <div class="footer__heading">Contact</div>
+          <a href="tel:+919876543210" class="footer__link">📞 +91 98765 43210</a>
+          <a href="https://wa.me/919876543210" target="_blank" class="footer__link">💬 WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div>© 2024 Samriddhi Atta Chakki. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919876543210" target="_blank" class="whatsapp-float">💬</a>
+  <script type="module" src="js/products-page.js"></script>
+</body>
+</html>
