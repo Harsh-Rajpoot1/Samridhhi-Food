@@ -320,7 +320,7 @@ export function getProductPlaceholder(product) {
       <rect width="400" height="400" fill="url(#bg)"/>
       <text x="200" y="180" text-anchor="middle" font-size="80">${icon}</text>
       <text x="200" y="240" text-anchor="middle" font-family="system-ui" font-size="16" font-weight="600" fill="${color}">${product.name}</text>
-      <text x="200" y="265" text-anchor="middle" font-family="system-ui" font-size="13" fill="#9C8578">Samriddhi Atta Chakki</text>
+      <text x="200" y="265" text-anchor="middle" font-family="system-ui" font-size="13" fill="#9C8578">Samriddhi Food</text>
     </svg>
   `)}`;
 }

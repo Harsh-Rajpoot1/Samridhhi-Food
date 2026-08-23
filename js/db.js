@@ -554,7 +554,7 @@ function getLocalStoreSettings() {
     if (saved) return JSON.parse(saved);
   } catch {}
   return {
-    storeName: 'Samriddhi Atta Chakki',
+    storeName: 'Samriddhi Food',
     phone: '+91 9876543210',
     whatsapp: '+919876543210',
     address: 'Main Market Road, Indore, MP 452001',

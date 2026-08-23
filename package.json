@@ -1,5 +1,5 @@
 {
-  "name": "samriddhi-atta-chakki",
+  "name": "samriddhi-food",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "keywords": ["atta", "chakki", "flour", "mill"],
-  "author": "Samriddhi Atta Chakki",
+  "author": "Samriddhi Food",
   "license": "ISC",
-  "description": "Samriddhi Atta Chakki — Premium Stone-Ground Flour E-commerce Website",
+  "description": "Samriddhi Food — Premium Stone-Ground Flour E-commerce Website",
   "dependencies": {
     "firebase": "^12.18.0",
     "vite": "^8.2.2"

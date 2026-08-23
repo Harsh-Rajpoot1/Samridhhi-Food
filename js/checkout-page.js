@@ -179,7 +179,7 @@ function setupFormSubmit() {
     // For WhatsApp orders, redirect to WhatsApp
     if (paymentMode === 'whatsapp') {
       const itemsList = cart.map(i => `• ${i.name} (${i.weight}) × ${i.qty} = ${formatPrice(i.price * i.qty)}`).join('\n');
-      const whatsappMsg = `🛒 *New Order from Samriddhi Atta Chakki Website*\n\n` +
+      const whatsappMsg = `🛒 *New Order from Samriddhi Food Website*\n\n` +
         `*Order ID:* ${orderId}\n` +
         `*Name:* ${customerName}\n` +
         `*Phone:* ${phone}\n` +
