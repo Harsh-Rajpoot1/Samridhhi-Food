@@ -164,7 +164,7 @@ async function checkDeliveryRate(pincode) {
 
     deliveryValue.textContent = 'N/A';
     deliveryValue.classList.remove('free');
-    deliveryInfo.innerHTML = '❌ Sorry, we don\'t deliver to this pincode yet. <a href="https://wa.me/919876543210?text=Hi! Can you deliver to pincode ' + pincode + '?" target="_blank">Ask us on WhatsApp</a>';
+    deliveryInfo.innerHTML = '❌ Sorry, we don\'t deliver to this pincode yet. <a href="https://wa.me/917392866843?text=Hi! Can you deliver to pincode ' + pincode + '?" target="_blank">Ask us on WhatsApp</a>';
     deliveryInfo.style.display = 'block';
     deliveryChecked = false;
     deliveryCharge = 0;

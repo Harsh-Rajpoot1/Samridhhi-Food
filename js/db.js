@@ -555,8 +555,11 @@ function getLocalStoreSettings() {
   } catch {}
   return {
     storeName: 'Shree Samvriddhi Foods',
-    phone: '+91 9876543210',
-    whatsapp: '+919876543210',
+    phone: '+91 73928 66843 / +91 88089 92699',
+    phone1: '+91 73928 66843',
+    phone2: '+91 88089 92699',
+    whatsapp: '+917392866843',
+    whatsapp2: '+918808992699',
     address: '00 Near ITI Hostel, Indaurabagh, Devrai Kala, Bakshi Ka Talab Tahsil, Lucknow, Uttar Pradesh - 226202 (Plus Code: XWW4+568)',
     freeDeliveryThreshold: 500,
     fssaiRegNo: '22726102000723',

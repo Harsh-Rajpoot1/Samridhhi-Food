@@ -106,7 +106,7 @@ async function checkDeliveryRate(pincode) {
     rateInfo.style.display = 'block';
   } else {
     deliveryCharge = 0;
-    rateInfo.innerHTML = '❌ We don\'t currently deliver to this pincode. <a href="https://wa.me/919876543210" target="_blank" style="color:var(--color-primary-600);">Contact us on WhatsApp</a>';
+    rateInfo.innerHTML = '❌ We don\'t currently deliver to this pincode. <a href="https://wa.me/917392866843" target="_blank" style="color:var(--color-primary-600);">Contact us on WhatsApp</a>';
     rateInfo.style.background = '#FFEBEE';
     rateInfo.style.display = 'block';
   }
@@ -189,7 +189,7 @@ function setupFormSubmit() {
         `*Delivery:* ${deliveryCharge > 0 ? formatPrice(deliveryCharge) : 'FREE'}\n` +
         `*Total:* ${formatPrice(total)}`;
 
-      window.open(`https://wa.me/919876543210?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
+      window.open(`https://wa.me/917392866843?text=${encodeURIComponent(whatsappMsg)}`, '_blank');
     }
 
     // Save order to Firestore/local DB helper
