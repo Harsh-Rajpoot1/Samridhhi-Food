@@ -1,65 +1,85 @@
 /* ============================================
-   SAMRIDDHI FOOD — ANIMATIONS
-   Scroll reveals, hover effects, transitions
+   SHREE SAMVRIDDHI FOODS — ANIMATIONS
+   Scroll reveals, ticker, hover effects
    ============================================ */
 
 /* ---- Scroll Reveal Animations ---- */
-.reveal {
+.js .reveal:not(.in),
+.js .reveal-print:not(.in),
+.js .reveal-stamp:not(.in) {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(36px);
 }
 
-.reveal.visible {
+.reveal,
+.reveal-print,
+.reveal-stamp {
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.in,
+.reveal-print.in,
+.reveal-stamp.in {
   opacity: 1;
   transform: translateY(0);
 }
 
-.reveal-left {
+/* Print-press stagger: children animate in sequentially */
+.reveal-print.in > * {
   opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: revealChild 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.reveal-left.visible {
-  opacity: 1;
-  transform: translateX(0);
+.reveal-print.in > *:nth-child(1) { animation-delay: calc(var(--i, 0) * 0.08s); }
+.reveal-print.in > *:nth-child(2) { animation-delay: calc(var(--i, 1) * 0.08s); }
+.reveal-print.in > *:nth-child(3) { animation-delay: calc(var(--i, 2) * 0.08s); }
+.reveal-print.in > *:nth-child(4) { animation-delay: calc(var(--i, 3) * 0.08s); }
+.reveal-print.in > *:nth-child(5) { animation-delay: calc(var(--i, 4) * 0.08s); }
+.reveal-print.in > *:nth-child(6) { animation-delay: calc(var(--i, 5) * 0.08s); }
+.reveal-print.in > *:nth-child(7) { animation-delay: calc(var(--i, 6) * 0.08s); }
+.reveal-print.in > *:nth-child(8) { animation-delay: calc(var(--i, 7) * 0.08s); }
+
+@keyframes revealChild {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+
+/* Stamp reveal — slight rotation + scale */
+.js .reveal-stamp:not(.in) {
+  opacity: 0;
+  transform: scale(0.85) rotate(-8deg);
+}
+
+.reveal-stamp.in {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Legacy reveal classes (for other pages) */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
 
 .reveal-right {
   opacity: 0;
-  transform: translateX(50px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-.reveal-right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.85);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal-scale.visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Staggered children */
+/* Legacy stagger (for other pages) */
 .stagger-children > * {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .stagger-children.visible > *:nth-child(1) { transition-delay: 0.05s; }
 .stagger-children.visible > *:nth-child(2) { transition-delay: 0.1s; }
 .stagger-children.visible > *:nth-child(3) { transition-delay: 0.15s; }
@@ -68,10 +88,58 @@
 .stagger-children.visible > *:nth-child(6) { transition-delay: 0.3s; }
 .stagger-children.visible > *:nth-child(7) { transition-delay: 0.35s; }
 .stagger-children.visible > *:nth-child(8) { transition-delay: 0.4s; }
+.stagger-children.visible > * { opacity: 1; transform: translateY(0); }
 
-.stagger-children.visible > * {
-  opacity: 1;
-  transform: translateY(0);
+/* ---- Marquee Ticker ---- */
+.ticker-frame {
+  overflow: hidden;
+  background: var(--color-ink);
+  padding: var(--space-4) 0;
+}
+
+.ticker {
+  position: relative;
+}
+
+.ticker-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
+
+.ticker-row {
+  display: flex;
+  width: max-content;
+}
+
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-ivory);
+  animation: tickerScroll 40s linear infinite;
+  padding-right: 2rem;
+}
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
+
+/* ---- Float Animation ---- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 /* ---- Hover Lift Effects ---- */
@@ -80,124 +148,31 @@
 }
 
 .hover-lift:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-}
-
-.hover-glow {
-  transition: box-shadow var(--transition-base);
-}
-
-.hover-glow:hover {
-  box-shadow: var(--shadow-glow);
-}
-
-/* ---- Float Animation ---- */
-.float {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-/* ---- Grain/Wheat rotating ---- */
-.rotate-slow {
-  animation: rotateSlow 20s linear infinite;
-}
-
-@keyframes rotateSlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* ---- Counter Animation ---- */
-.count-up {
-  transition: all 0.5s ease-out;
-}
-
-/* ---- Ripple Effect ---- */
-.ripple {
-  position: relative;
-  overflow: hidden;
-}
-
-.ripple::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(212, 160, 23, 0.3) 0%, transparent 70%);
-  transform: scale(0);
-  opacity: 0;
-  transition: transform 0.5s, opacity 0.5s;
-}
-
-.ripple:active::after {
-  transform: scale(2.5);
-  opacity: 1;
-  transition: 0s;
-}
-
-/* ---- Gradient Text Animation ---- */
-.gradient-text {
-  background: linear-gradient(135deg, #D4A017, #F5C842, #D4A017, #8B6914);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 4s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
 }
 
 /* ---- Background Grain Texture ---- */
-.grain-overlay::before {
+.grain-overlay::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
 }
 
 /* ---- Page Transition ---- */
 .page-transition {
-  animation: pageIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: pageIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes pageIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ---- Pulsing dot ---- */
-.pulse-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: var(--radius-full);
-  background: var(--color-success);
-  position: relative;
-}
-
-.pulse-dot::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: var(--radius-full);
-  border: 2px solid var(--color-success);
-  animation: pulseDot 1.5s ease-out infinite;
-}
-
 @keyframes pulseDot {
   0% { transform: scale(1); opacity: 0.6; }
   100% { transform: scale(2); opacity: 0; }
@@ -214,28 +189,85 @@
   100% { transform: scale(1); }
 }
 
-/* ---- Underline slide ---- */
-.underline-slide {
-  position: relative;
-  display: inline-block;
+/* ---- Carousel plate transitions ---- */
+.plate {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.underline-slide::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gradient-primary);
-  transition: width var(--transition-base);
+.plate.is-active {
+  display: block;
+  opacity: 1;
 }
 
-.underline-slide:hover::after {
-  width: 100%;
+/* ---- Intro Press Overlay ---- */
+.intro-press {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background: var(--color-ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: introHold 1.8s ease-in-out forwards, introWipe 0.6s 1.8s ease-in-out forwards;
+  pointer-events: none;
 }
 
-/* ---- Status Timeline Animation ---- */
+.intro-sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.intro-word {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--color-ink);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-tight);
+}
+
+.intro-word b {
+  color: var(--color-saffron);
+  font-weight: var(--weight-bold);
+}
+
+.intro-rule {
+  display: block;
+  width: 60px;
+  height: 1.5px;
+  background: var(--color-ink);
+  animation: ruleGrow 0.6s 0.3s ease-out both;
+}
+
+@keyframes ruleGrow {
+  from { width: 0; }
+  to { width: 60px; }
+}
+
+.intro-stamp {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-ink-muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+@keyframes introHold {
+  0%, 80% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes introWipe {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-30px); pointer-events: none; }
+}
+
+/* ---- Timeline (for order tracking) ---- */
 .timeline-step {
   opacity: 0;
   transform: translateX(-20px);
@@ -250,4 +282,16 @@
 
 @keyframes timelineReveal {
   to { opacity: 1; transform: translateX(0); }
+}
+
+/* ---- Reduced Motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-print, .reveal-stamp,
+  .reveal-left, .reveal-right,
+  .stagger-children > *,
+  .intro-press {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
 }

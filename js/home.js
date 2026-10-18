@@ -1,91 +1,180 @@
 // ============================================
-// HOME PAGE — Main Script
+// HOME PAGE — Editorial / Artisanal Script
+// Inspired by milletnyou.com aesthetic
 // ============================================
 
-import { initScrollReveal, initNavbarScroll, initMobileMenu, formatPrice } from './utils.js';
+import { initScrollReveal, initNavbarScroll, formatPrice, CATEGORIES } from './utils.js';
 import { updateCartBadge } from './cart.js';
-import { SAMPLE_PRODUCTS, SAMPLE_TESTIMONIALS, getProductPlaceholder } from './sample-data.js';
+import { SAMPLE_TESTIMONIALS, getProductPlaceholder } from './sample-data.js';
+import { getProducts, getFeaturedProducts } from './db.js';
+
+let carouselTimer = null;
+let carouselIndex = 0;
+let carouselPaused = false;
+let carouselPlates = [];
+let carouselTicks = [];
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
   initNavbarScroll();
-  initMobileMenu();
+  initMobileNav();
   updateCartBadge();
-  renderFeaturedProducts();
+  setupHeroCarousel();
+  renderManifest();
   renderTestimonials();
-  setHeroImage();
 
-  // Init scroll reveal slightly delayed to allow DOM render
+  // Reveal elements on scroll
   requestAnimationFrame(() => {
-    initScrollReveal();
+    setTimeout(initScrollReveal, 60);
   });
 });
 
 /**
- * Set hero image placeholder
+ * Handle mobile details nav closing on link click
  */
-function setHeroImage() {
-  const heroImg = document.getElementById('heroImage');
-  if (heroImg) {
-    heroImg.src = getProductPlaceholder({
-      name: 'Fresh Atta',
-      category: 'wheat'
+function initMobileNav() {
+  document.querySelectorAll('.mnav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const details = link.closest('details');
+      if (details) details.removeAttribute('open');
     });
-    heroImg.alt = 'Fresh Stone-Ground Wheat Flour';
-  }
+  });
 }
 
-import { getFeaturedProducts } from './db.js';
-
 /**
- * Render featured products
+ * Setup Hero Product Showcase Carousel
  */
-async function renderFeaturedProducts() {
-  const grid = document.getElementById('featuredGrid');
-  if (!grid) return;
+async function setupHeroCarousel() {
+  const platesContainer = document.getElementById('heroPlates');
+  const ticksContainer = document.getElementById('carTicks');
+  const toggleBtn = document.getElementById('carToggle');
+  if (!platesContainer) return;
 
-  // Render skeletons first
-  grid.innerHTML = Array(4).fill(0).map(() => `
-    <div class="card" style="pointer-events: none;">
-      <div class="skeleton" style="aspect-ratio: 4/3; width: 100%;"></div>
-      <div class="card__body" style="padding: var(--space-6);">
-        <div class="skeleton" style="height: 16px; width: 40%; margin-bottom: 8px;"></div>
-        <div class="skeleton" style="height: 24px; width: 85%; margin-bottom: 12px;"></div>
-        <div class="skeleton" style="height: 40px; width: 100%;"></div>
-      </div>
-    </div>
-  `).join('');
+  let items = await getFeaturedProducts();
+  if (!items || items.length === 0) {
+    const all = await getProducts();
+    items = all.slice(0, 4);
+  }
 
-  const featured = await getFeaturedProducts();
+  const panels = ['panel-apricot', 'panel-coral', 'panel-saffron', 'panel-teal'];
 
-  grid.innerHTML = featured.map(product => {
-    const imgSrc = product.imageUrl || getProductPlaceholder(product);
-    const firstVariant = product.variants[0];
+  platesContainer.innerHTML = items.map((product, idx) => {
+    const variant = product.variants?.[0] || { price: 45, weight: '1 kg' };
+    const imgSrc = product.imageUrl || (idx === 0 ? 'images/hero.jpg' : getProductPlaceholder(product));
+    const panelClass = panels[idx % panels.length];
+    const catLabel = CATEGORIES[product.category] || product.category;
 
     return `
-      <div class="card hover-lift">
-        <div style="position: relative; aspect-ratio: 4/3; overflow: hidden; background: var(--color-bg-alt);">
-          <img src="${imgSrc}" alt="${product.name}" class="card__image" style="width:100%; height:100%; object-fit: cover;">
-        </div>
-        <div class="card__body">
-          <span class="card__tag">${getCategoryLabel(product.category)}</span>
-          <h3 class="card__title">${product.name}</h3>
-          <p class="card__desc">${product.description}</p>
-          <div class="card__price">
-            ${formatPrice(firstVariant.price)} <small>/ ${firstVariant.weight}</small>
+      <div class="plate ${panelClass} ${idx === 0 ? 'is-active' : ''}" data-idx="${idx}">
+        <img src="${imgSrc}" alt="${product.name}" class="plate-img" loading="eager">
+        <div class="plate-info">
+          <div>
+            <div class="plate-cat">${catLabel}</div>
+            <div class="plate-name">${product.name}</div>
           </div>
-          <div class="card__actions">
-            <a href="/products.html" class="btn btn--primary btn--sm" style="flex:1;">View Details</a>
+          <div class="plate-price">
+            ${formatPrice(variant.price)}
+            <small>/ ${variant.weight}</small>
           </div>
         </div>
       </div>
     `;
   }).join('');
+
+  if (ticksContainer) {
+    ticksContainer.innerHTML = items.map((_, idx) => `
+      <button type="button" class="car-tick ${idx === 0 ? 'is-active' : ''}" data-idx="${idx}" aria-label="Go to slide ${idx + 1}"></button>
+    `).join('');
+
+    carouselTicks = Array.from(ticksContainer.querySelectorAll('.car-tick'));
+    carouselTicks.forEach(tick => {
+      tick.addEventListener('click', () => {
+        const idx = parseInt(tick.getAttribute('data-idx'), 10);
+        goToSlide(idx);
+      });
+    });
+  }
+
+  carouselPlates = Array.from(platesContainer.querySelectorAll('.plate'));
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      carouselPaused = !carouselPaused;
+      toggleBtn.textContent = carouselPaused ? 'Play' : 'Pause';
+    });
+  }
+
+  // Hover to pause
+  platesContainer.addEventListener('mouseenter', () => { carouselPaused = true; });
+  platesContainer.addEventListener('mouseleave', () => {
+    if (toggleBtn && toggleBtn.textContent !== 'Play') {
+      carouselPaused = false;
+    }
+  });
+
+  startCarousel();
 }
 
+function startCarousel() {
+  if (carouselTimer) clearInterval(carouselTimer);
+  carouselTimer = setInterval(() => {
+    if (carouselPaused || carouselPlates.length <= 1) return;
+    goToSlide((carouselIndex + 1) % carouselPlates.length);
+  }, 4000);
+}
+
+function goToSlide(nextIndex) {
+  if (carouselPlates.length === 0) return;
+  carouselPlates[carouselIndex]?.classList.remove('is-active');
+  carouselTicks[carouselIndex]?.classList.remove('is-active');
+
+  carouselIndex = nextIndex;
+
+  carouselPlates[carouselIndex]?.classList.add('is-active');
+  carouselTicks[carouselIndex]?.classList.add('is-active');
+}
 
 /**
- * Render testimonials
+ * Render Manifest list ("This week's goods")
+ */
+async function renderManifest() {
+  const container = document.getElementById('manifestRows');
+  const countEl = document.getElementById('productCount');
+  if (!container) return;
+
+  const products = await getProducts();
+
+  if (countEl) {
+    countEl.textContent = `${products.length} items declared`;
+  }
+
+  container.innerHTML = products.map((product) => {
+    const variant = product.variants?.[0] || { price: 45, weight: '1 kg' };
+    const imgSrc = product.imageUrl || getProductPlaceholder(product);
+    const catLabel = CATEGORIES[product.category] || product.category;
+
+    return `
+      <a href="products.html?id=${product.id}" class="good">
+        <img src="${imgSrc}" alt="${product.name}" loading="lazy">
+        <div class="good-text">
+          <span class="name">${product.name}</span>
+          <span class="decl">${product.description}</span>
+        </div>
+        <span class="cat">${catLabel}</span>
+        <div class="gprice">
+          ${formatPrice(variant.price)}
+          <small>/ ${variant.weight}</small>
+        </div>
+      </a>
+    `;
+  }).join('');
+
+  // Re-observe newly rendered rows for scroll reveal
+  initScrollReveal();
+}
+
+/**
+ * Render Testimonials
  */
 function renderTestimonials() {
   const grid = document.getElementById('testimonialsGrid');
@@ -104,16 +193,4 @@ function renderTestimonials() {
       </div>
     </div>
   `).join('');
-}
-
-function getCategoryLabel(cat) {
-  const labels = {
-    wheat: 'Wheat Atta',
-    multigrain: 'Multigrain',
-    besan: 'Besan',
-    maida: 'Maida',
-    rice: 'Rice Flour',
-    millet: 'Millet Flour'
-  };
-  return labels[cat] || cat;
 }

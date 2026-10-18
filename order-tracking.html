@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Track Order — Samriddhi Food</title>
-  <meta name="description" content="Track your Samriddhi Food order status in real-time.">
+  <title>Track Order — Shree Samvriddhi Foods</title>
+  <meta name="description" content="Track your Shree Samvriddhi Foods order status in real-time.">
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/animations.css">
@@ -12,24 +12,68 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
 </head>
 <body>
-  <nav class="navbar scrolled" id="navbar">
-    <div class="navbar__inner">
-      <a href="index.html" class="navbar__logo">
-        <div class="navbar__logo-icon">🌾</div>
-        <div class="navbar__logo-text">Samriddhi<span>Food</span></div>
-      </a>
-      <div class="navbar__links" id="navLinks">
-        <a href="index.html" class="navbar__link">Home</a>
-        <a href="products.html" class="navbar__link">Products</a>
-        <a href="index.html#contact" class="navbar__link">Contact</a>
-        <a href="order-tracking.html" class="navbar__link active">Track Order</a>
+  <!-- ===== SITE HEADER STACK ===== -->
+  <div class="header-stack" id="headerStack">
+    <aside class="fssai-top-strip" aria-label="FSSAI Registration Notice">
+      <div class="fssai-top-strip__inner">
+        <div class="fssai-top-strip__left">
+          <span class="fssai-top-strip__badge">GOVT. APPROVED</span>
+          <span>FSSAI Registered Unit · Registration No: <strong>22726102000723</strong></span>
+        </div>
+        <div>
+          <button type="button" class="fssai-top-strip__link fssai-trigger" data-fssai-tab="overview">
+            Verify License Certificate ↗
+          </button>
+        </div>
       </div>
-      <div class="navbar__actions">
-        <a href="cart.html" class="navbar__cart-btn" id="cartBtn">🛒<span class="navbar__cart-badge" id="cartBadge">0</span></a>
-        <div class="navbar__toggle" id="navToggle"><span></span><span></span><span></span></div>
+    </aside>
+
+    <header class="bar" id="navbar">
+      <div class="inner">
+        <a href="index.html" class="brand">
+          <span class="brand-text">
+            Shree Samvriddhi
+            <small>Foods · Atta Chakki</small>
+          </span>
+        </a>
+
+        <span class="plate-meta" aria-hidden="true">Est. 2015 · Devrai Kala, UP</span>
+
+        <nav class="nav">
+          <a href="index.html" class="navlink">Home</a>
+          <a href="products.html" class="navlink">Shop</a>
+          <a href="index.html#why-us" class="navlink">About</a>
+          <a href="index.html#contact" class="navlink">Contact</a>
+          <a href="order-tracking.html" class="navlink active">Track</a>
+        </nav>
+
+        <details class="mnav">
+          <summary class="mnav-trigger" aria-label="Menu">
+            <svg class="mnav-icon mnav-icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <svg class="mnav-icon mnav-icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </summary>
+          <div class="mnav-panel">
+            <nav class="mnav-links" aria-label="Mobile">
+              <a href="index.html" class="mnav-link">Home</a>
+              <a href="products.html" class="mnav-link">Shop</a>
+              <a href="index.html#why-us" class="mnav-link">About</a>
+              <a href="index.html#contact" class="mnav-link">Contact</a>
+              <a href="order-tracking.html" class="mnav-link active">Track Order</a>
+            </nav>
+          </div>
+        </details>
+
+        <a href="cart.html" class="cartlink">
+          Cart
+          <span class="count" id="cartBadge">0</span>
+        </a>
       </div>
-    </div>
-  </nav>
+    </header>
+  </div>
 
   <div class="tracking-page page-transition">
     <div class="page-header" style="background: var(--gradient-hero);">
@@ -60,14 +104,47 @@
     </div>
   </div>
 
-  <footer class="footer">
+  <footer class="footer" style="padding-top:var(--space-8);">
     <div class="container">
-      <div class="footer__bottom" style="border-top:none;padding-top:var(--space-4);">
-        <div>© 2024 Samriddhi Food. All rights reserved.</div>
+      <div class="footer__fssai" style="padding:var(--space-4) 0;border-top:none;">
+        <div class="footer__fssai-left">
+          <img src="images/fssai-logo.svg" alt="FSSAI Logo" class="footer__fssai-logo">
+          <div class="footer__fssai-meta">
+            <div><strong>Food Safety and Standards Authority of India (FSSAI)</strong></div>
+            <div>Govt. of UP Reg. No: <strong>22726102000723</strong> · Valid Upto: <strong>14-09-2027</strong></div>
+          </div>
+        </div>
+        <div>
+          <button type="button" class="btn btn--sm ghost fssai-trigger" data-fssai-tab="overview">
+            📄 View License Certificate
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Traditional Indian Kitchen & Farm Artwork (End of Footer Banner) -->
+    <div class="footer__art-banner">
+      <img src="images/footer-art.jpg" alt="Traditional Indian Farm and Kitchen - From field to fresh stone-ground flour" class="footer__art-img" loading="lazy">
+    </div>
+
+    <!-- Store Policies & Copyright Directly Below Artwork -->
+    <div class="footer__art-policies">
+      <div class="footer__art-policies-row">
+        <button type="button" class="footer__art-policy-link" data-open-policy="privacy">Privacy Policy</button>
+        <button type="button" class="footer__art-policy-link" data-open-policy="terms">Terms &amp; Conditions</button>
+        <button type="button" class="footer__art-policy-link" data-open-policy="shipping">Shipping Policy</button>
+      </div>
+      <div class="footer__art-policies-row">
+        <button type="button" class="footer__art-policy-link" data-open-policy="refund">Refund &amp; Replacement Policy</button>
+      </div>
+      <div class="footer__art-copyright">
+        © 2024 Shree Samvriddhi Foods. All rights reserved. | FSSAI Lic. 22726102000723
       </div>
     </div>
   </footer>
 
   <script type="module" src="js/tracking-page.js"></script>
+  <script type="module" src="js/fssai-modal.js"></script>
+  <script type="module" src="js/policy-modal.js"></script>
 </body>
 </html>

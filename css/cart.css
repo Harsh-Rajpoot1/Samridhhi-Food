@@ -106,7 +106,7 @@
 /* ---- Cart Summary Sidebar ---- */
 .cart-summary {
   position: sticky;
-  top: 100px;
+  top: 120px;
   height: fit-content;
   background: var(--color-bg-card);
   border-radius: var(--radius-2xl);
@@ -276,7 +276,7 @@
 /* ---- Order Summary Sidebar ---- */
 .order-summary {
   position: sticky;
-  top: 100px;
+  top: 120px;
   height: fit-content;
 }
 

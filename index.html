@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samriddhi Food — Pure, Fresh, Stone-Ground Flour</title>
-  <meta name="description" content="Samriddhi Food delivers freshly stone-ground wheat atta, multigrain flour, besan, maida, rice flour and millet flour. Order online for doorstep delivery.">
-  <meta name="keywords" content="atta chakki, wheat flour, stone ground, fresh atta, multigrain atta, besan, maida, delivery">
+  <script>document.documentElement.classList.add('js');</script>
+  <title>Shree Samvriddhi Foods — Pure, Fresh, Stone-Ground Flour</title>
+  <meta name="description" content="Freshly stone-ground wheat atta, multigrain flour, besan and more — no preservatives, no additives. From our chakki to your kitchen.">
+  <meta name="keywords" content="atta chakki, wheat flour, stone ground, fresh atta, multigrain atta, besan, delivery, Devrai Kala, Uttar Pradesh, 226202">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Shree Samvriddhi Foods — Pure, Fresh, Stone-Ground Flour">
+  <meta property="og:description" content="Freshly stone-ground wheat atta, multigrain flour, besan and more — no preservatives, no additives. Devrai Kala, Uttar Pradesh.">
+  <meta property="og:site_name" content="Shree Samvriddhi Foods">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/design-system.css">
@@ -17,296 +24,569 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
 </head>
 <body>
-  <!-- ===== NAVBAR ===== -->
-  <nav class="navbar" id="navbar">
-    <div class="navbar__inner">
-      <a href="index.html" class="navbar__logo">
-        <div class="navbar__logo-icon">🌾</div>
-        <div class="navbar__logo-text">
-          Samriddhi
-          <span>Food</span>
-        </div>
-      </a>
 
-      <div class="navbar__links" id="navLinks">
-        <a href="index.html" class="navbar__link active">Home</a>
-        <a href="products.html" class="navbar__link">Products</a>
-        <a href="#why-us" class="navbar__link">About</a>
-        <a href="#contact" class="navbar__link">Contact</a>
-        <a href="order-tracking.html" class="navbar__link">Track Order</a>
+  <!-- ===== INTRO PRESS OVERLAY ===== -->
+  <div class="intro-press" aria-hidden="true">
+    <div class="intro-sheet">
+      <div class="intro-word-wrap">
+        <p class="intro-word">Shree Samvriddhi<b>Foods</b></p>
+        <span class="intro-rule"></span>
       </div>
+      <div class="intro-stamp">STONE GROUND<br>·<br>EST. 2015</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var script = document.currentScript;
+      var overlay = script && script.previousElementSibling;
+      if (!overlay || !overlay.classList.contains('intro-press')) return;
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) { overlay.remove(); return; }
+      var done = false;
+      function finish() {
+        if (done) return; done = true;
+        document.removeEventListener('pointerdown', finish);
+        document.removeEventListener('keydown', finish);
+        overlay.removeEventListener('animationend', onEnd);
+        if (overlay.parentNode) overlay.remove();
+      }
+      function onEnd(e) { if (e.target === overlay) finish(); }
+      overlay.addEventListener('animationend', onEnd);
+      document.addEventListener('pointerdown', finish, { once: true });
+      document.addEventListener('keydown', finish, { once: true });
+    })();
+  </script>
 
-      <div class="navbar__actions">
-        <a href="cart.html" class="navbar__cart-btn" id="cartBtn" title="Cart">
-          🛒
-          <span class="navbar__cart-badge" id="cartBadge">0</span>
+  <!-- ===== SITE HEADER STACK (FSSAI Strip + Nav Bar) ===== -->
+  <div class="header-stack" id="headerStack">
+    <aside class="fssai-top-strip" aria-label="FSSAI Registration & Food Safety Notice">
+      <div class="fssai-top-strip__inner">
+        <div class="fssai-top-strip__left">
+          <span class="fssai-top-strip__badge">GOVT. OF UP · FSSAI</span>
+          <span>Registered Food Manufacturing Unit · Registration No: <strong>22726102000723</strong></span>
+        </div>
+        <div>
+          <button type="button" class="fssai-top-strip__link fssai-trigger" data-fssai-tab="overview">
+            Verify License Certificate ↗
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== HEADER BAR ===== -->
+    <header class="bar" id="navbar">
+      <div class="inner">
+        <a href="index.html" class="brand">
+          <span class="brand-text">
+            Shree Samvriddhi
+            <small>Foods · Atta Chakki</small>
+          </span>
         </a>
-        <div class="navbar__toggle" id="navToggle">
-          <span></span><span></span><span></span>
+
+        <span class="plate-meta" aria-hidden="true">Est. 2015 · Devrai Kala, UP</span>
+
+        <nav class="nav">
+          <a href="index.html" class="navlink active">Home</a>
+          <a href="products.html" class="navlink">Shop</a>
+          <a href="#why-us" class="navlink">About</a>
+          <a href="#contact" class="navlink">Contact</a>
+          <a href="order-tracking.html" class="navlink">Track</a>
+        </nav>
+
+        <details class="mnav">
+          <summary class="mnav-trigger" aria-label="Menu">
+            <svg class="mnav-icon mnav-icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <svg class="mnav-icon mnav-icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </summary>
+          <div class="mnav-panel">
+            <nav class="mnav-links" aria-label="Mobile">
+              <a href="index.html" class="mnav-link">Home</a>
+              <a href="products.html" class="mnav-link">Shop</a>
+              <a href="#why-us" class="mnav-link">About</a>
+              <a href="#contact" class="mnav-link">Contact</a>
+              <a href="order-tracking.html" class="mnav-link">Track Order</a>
+            </nav>
+          </div>
+        </details>
+
+        <a href="cart.html" class="cartlink">
+          Cart
+          <span class="count" id="cartBadge">0</span>
+        </a>
+      </div>
+    </header>
+  </div>
+
+  <main>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="hero">
+      <div class="wrap">
+        <div class="hero__content">
+          <div class="hero__text reveal-print">
+            <p class="hero__lot">Stone ground · Packed fresh · Delivered in 24hrs</p>
+            <h1 class="hero__title">Pure, fresh flour — <em>no preservatives.</em></h1>
+
+            <dl class="hero__decl">
+              <div class="hero__decl-line">
+                <dt class="hero__decl-dt">Contains</dt>
+                <dd class="hero__decl-dd">Premium wheat · whole grains · millets</dd>
+              </div>
+              <div class="hero__decl-line">
+                <dt class="hero__decl-dt">Never contains</dt>
+                <dd class="hero__decl-dd">Preservatives · additives · chemicals</dd>
+              </div>
+              <div class="hero__decl-line">
+                <dt class="hero__decl-dt">Ground by</dt>
+                <dd class="hero__decl-dd">Traditional stone chakki, daily fresh</dd>
+              </div>
+            </dl>
+
+            <div class="hero__cta">
+              <a href="products.html" class="btn btn--primary btn--lg">Shop the batch →</a>
+              <a href="#why-us" class="btn ghost">Our story</a>
+              <button type="button" class="fssai-inline-badge fssai-trigger" data-fssai-tab="overview" title="Click to view official FSSAI Registration Certificate">
+                <img src="images/fssai-logo.svg" alt="FSSAI Logo" class="fssai-inline-badge__logo">
+                <span class="fssai-inline-badge__text">Reg. 22726102000723</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-carousel reveal-stamp" id="heroCarousel">
+            <div class="plates" id="heroPlates">
+              <!-- Rendered by JS -->
+            </div>
+
+            <div class="stamp reveal-stamp">No<br>preservatives<br>·<br>Ever</div>
+
+            <div class="car-controls">
+              <div class="car-ticks" id="carTicks">
+                <!-- Rendered by JS -->
+              </div>
+              <button type="button" class="car-toggle" id="carToggle">Pause</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCROLLING TICKER ===== -->
+    <div class="ticker-gap">
+      <div class="ticker-frame">
+        <div class="ticker">
+          <span class="ticker-sr">Stone ground. No preservatives. No chemicals. Fresh daily. Premium grains. Doorstep delivery.</span>
+          <div class="ticker-row" aria-hidden="true">
+            <div class="ticker-track">STONE GROUND · NO PRESERVATIVES · NO CHEMICALS · FRESH DAILY · PREMIUM GRAINS · DOORSTEP DELIVERY · STONE GROUND · NO PRESERVATIVES · NO CHEMICALS · FRESH DAILY · PREMIUM GRAINS · DOORSTEP DELIVERY · </div>
+            <div class="ticker-track">STONE GROUND · NO PRESERVATIVES · NO CHEMICALS · FRESH DAILY · PREMIUM GRAINS · DOORSTEP DELIVERY · STONE GROUND · NO PRESERVATIVES · NO CHEMICALS · FRESH DAILY · PREMIUM GRAINS · DOORSTEP DELIVERY · </div>
+          </div>
         </div>
       </div>
     </div>
-  </nav>
 
-  <!-- ===== HERO SECTION ===== -->
-  <section class="hero grain-overlay" id="hero">
-    <div class="container">
-      <div class="hero__content">
-        <div class="hero__text">
-          <div class="hero__label">
-            <span class="dot"></span>
-            Freshly Ground Daily
-          </div>
-          <h1 class="hero__title">
-            Pure. Fresh.<br>
-            <span class="highlight">Stone-Ground.</span>
-          </h1>
-          <p class="hero__desc">
-            Experience the authentic taste of traditionally stone-ground flour. From premium wheat atta to multigrain blends — delivered fresh to your doorstep.
+    <!-- ===== THIS WEEK'S GOODS (Manifest-style product list) ===== -->
+    <section class="wrap block reveal" id="featured">
+      <div class="manifest-head">
+        <h2>This week's goods</h2>
+        <span class="mcount" id="productCount">12 items declared</span>
+      </div>
+      <div class="manifest">
+        <div class="rows reveal-print" id="manifestRows">
+          <!-- Rendered by JS -->
+        </div>
+
+        <div class="kinds reveal" id="kindsBar">
+          <span class="kinds-label">Find by kind</span>
+          <span class="kinds-links">
+            <a href="products.html?cat=wheat" class="kind">Wheat Atta <span class="kcount">(3)</span></a>
+            <a href="products.html?cat=multigrain" class="kind">Multigrain <span class="kcount">(2)</span></a>
+            <a href="products.html?cat=besan" class="kind">Besan <span class="kcount">(1)</span></a>
+            <a href="products.html?cat=millet" class="kind">Millet Flour <span class="kcount">(4)</span></a>
+            <a href="products.html?cat=rice" class="kind">Rice Flour <span class="kcount">(1)</span></a>
+            <a href="products.html?cat=maida" class="kind">Maida <span class="kcount">(1)</span></a>
+          </span>
+        </div>
+      </div>
+      <a href="products.html" class="btn allgoods">See all products →</a>
+    </section>
+
+    <!-- ===== QUOTE BAND ===== -->
+    <section class="quoteband edge-slant-top edge-slant-bottom reveal" style="--zig: var(--color-teal-deep);">
+      <p class="quote">"The best flour comes from the freshest grains, ground with care."</p>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="wrap block reveal" id="why-us">
+      <div class="manifest-head">
+        <h2>Why choose us</h2>
+        <span class="mcount">Real grains · real freshness</span>
+      </div>
+      <div class="why">
+        <div class="why-cell scroll-press-soft">
+          <p class="k">Stone-ground fresh</p>
+          <p class="v">
+            Traditional chakki grinding preserves the natural fiber, nutrients, and flavour
+            that modern roller mills destroy. Every grain is ground with care.
           </p>
-          <div class="hero__cta">
-            <a href="/products.html" class="btn btn--primary btn--lg">
-              🛒 Shop Now
-            </a>
-            <a href="#why-us" class="btn btn--secondary btn--lg" style="border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.9);">
-              Learn More →
-            </a>
-          </div>
-          <div class="hero__stats">
-            <div>
-              <div class="hero__stat-value">10+</div>
-              <div class="hero__stat-label">Years of Trust</div>
-            </div>
-            <div>
-              <div class="hero__stat-value">5000+</div>
-              <div class="hero__stat-label">Happy Families</div>
-            </div>
-            <div>
-              <div class="hero__stat-value">12+</div>
-              <div class="hero__stat-label">Flour Varieties</div>
+        </div>
+        <div class="why-cell scroll-press-soft">
+          <p class="k">Zero preservatives</p>
+          <p class="v">
+            We grind fresh daily. Zero additives, zero preservatives, zero chemicals.
+            Just pure, honest flour for your family.
+          </p>
+        </div>
+        <div class="why-cell scroll-press-soft">
+          <p class="k">Premium grains only</p>
+          <p class="v">
+            We source the finest MP Sharbati wheat and other grains directly from
+            trusted farmers for consistent quality every batch.
+          </p>
+        </div>
+        <div class="why-cell scroll-press-soft">
+          <p class="k">Doorstep delivery</p>
+          <p class="v">
+            Fresh flour delivered to your door within 24 hours.
+            Free delivery on orders above ₹500 in the local area.
+          </p>
+        </div>
+        <p class="why-impact reveal">
+          <span class="why-impact-label">The promise —</span> Every batch is ground fresh to order.
+          No warehouse stock, no sitting inventory — from our chakki to your kitchen, within a day.
+        </p>
+
+        <!-- Authentic Facility Card -->
+        <div class="facility-card reveal scroll-press-soft">
+          <img src="images/chakki-facility-upright.jpg?v=2" alt="Shree Samvriddhi Foods Stone-Grinding Unit, Devrai Kala, UP" class="facility-card__img" loading="lazy">
+          <div class="facility-card__body">
+            <span class="stamp-tag" style="display:inline-block; font-size:var(--text-xs); letter-spacing:var(--tracking-widest); text-transform:uppercase; color:var(--color-saffron-deep); font-weight:var(--weight-semibold); margin-bottom:var(--space-2);">
+              Our Mill · Devrai Kala, Uttar Pradesh
+            </span>
+            <h3 style="font-family:var(--font-heading); font-size:var(--text-2xl); color:var(--color-ink); margin-bottom:var(--space-3); line-height:1.2;">
+              The authentic stone chakki where your flour is milled
+            </h3>
+            <p style="font-size:var(--text-sm); color:var(--color-ink-soft); line-height:1.6; margin-bottom:var(--space-4);">
+              Located at <strong>Devrai Kala, Uttar Pradesh 226202 (Plus Code: XWW4+568)</strong>. Our traditional slow stone chakki and grain cleaner ensure pure, natural, high-fiber flour without overheated milling or artificial processing.
+            </p>
+            <div style="display:flex; gap:var(--space-3); align-items:center; flex-wrap:wrap;">
+              <span style="font-size:var(--text-xs); color:var(--color-ink-muted); text-transform:uppercase; letter-spacing:var(--tracking-wide);">📍 Plus Code: XWW4+568</span>
+              <a href="#contact" class="btn btn--sm ghost">View Location &amp; Map →</a>
             </div>
           </div>
         </div>
 
-        <div class="hero__visual">
-          <div class="hero__image-wrapper">
-            <img src="" alt="Fresh Stone Ground Wheat Flour" id="heroImage">
-          </div>
-          <div class="hero__float-badge hero__float-badge--1">
-            <div class="icon icon--gold">🌾</div>
-            <div>
-              <div class="label">100%</div>
-              <div class="value">Natural</div>
+        <!-- ===== OFFICIAL FSSAI REGISTRATION CERTIFICATE CARD ===== -->
+        <div class="fssai-trust-section reveal scroll-press-soft" id="fssai-certificate">
+          <div class="fssai-trust-grid">
+            <div class="fssai-trust-left">
+              <div class="fssai-trust-logo-row">
+                <img src="images/fssai-logo.svg" alt="Food Safety and Standards Authority of India (FSSAI)" class="fssai-trust-main-logo">
+                <span class="fssai-gov-pill">Govt. of Uttar Pradesh Approved</span>
+              </div>
+              <h3 class="fssai-trust-title">
+                100% Licensed &amp; Certified under FSS Act, 2006
+              </h3>
+              <p class="fssai-trust-desc">
+                Shree Samvriddhi Foods is an officially registered Food Business Operator (FBO) under the <strong>Department of Food Safety and Drug Administration, Government of Uttar Pradesh</strong>. Every grain is cleaned, slow-ground, and packed under rigorous hygiene and statutory safety regulations.
+              </p>
+              <div class="fssai-trust-highlights">
+                <div class="fssai-trust-item">
+                  <span>🏛️</span>
+                  <div>
+                    <strong>FSS Act, 2006</strong>
+                    <span>Statutory food manufacturing</span>
+                  </div>
+                </div>
+                <div class="fssai-trust-item">
+                  <span>🌾</span>
+                  <div>
+                    <strong>11 Approved Flours</strong>
+                    <span>Standardised category 06.2</span>
+                  </div>
+                </div>
+                <div class="fssai-trust-item">
+                  <span>🛡️</span>
+                  <div>
+                    <strong>Zero Additives</strong>
+                    <span>Pure traditional stone grinding</span>
+                  </div>
+                </div>
+                <div class="fssai-trust-item">
+                  <span>✅</span>
+                  <div>
+                    <strong>Active License</strong>
+                    <span>Fee paid validity: 14-09-2027</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="hero__float-badge hero__float-badge--2">
-            <div class="icon icon--green">✓</div>
-            <div>
-              <div class="label">No</div>
-              <div class="value">Preservatives</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== FEATURED PRODUCTS ===== -->
-  <section class="section featured" id="featured">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-header__label">Our Bestsellers</div>
-        <h2 class="section-header__title">Featured Products</h2>
-        <p class="section-header__desc">Handpicked favourites loved by thousands of families</p>
-      </div>
-      <div class="featured__grid stagger-children" id="featuredGrid">
-        <!-- Products rendered by JS -->
-      </div>
-      <div class="text-center" style="margin-top: var(--space-10);">
-        <a href="/products.html" class="btn btn--primary btn--lg reveal">View All Products →</a>
-      </div>
-    </div>
-  </section>
+            <div class="fssai-trust-right">
+              <div class="fssai-cert-preview-head">
+                <div>
+                  <div style="font-size:10px;text-transform:uppercase;letter-spacing:var(--tracking-wider);color:var(--color-ink-muted);">पंजीकरण संख्या / REGISTRATION NO.</div>
+                  <div class="fssai-cert-preview-num">22726102000723</div>
+                </div>
+                <span class="fssai-status-pill">
+                  <span class="fssai-status-dot"></span>
+                  <span>Active &amp; Valid</span>
+                </span>
+              </div>
 
-  <!-- ===== WHY CHOOSE US ===== -->
-  <section class="section why-us" id="why-us">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-header__label">Why Choose Us</div>
-        <h2 class="section-header__title">The Samriddhi Difference</h2>
-        <p class="section-header__desc">We're not just another flour brand — we're your family's trusted partner in nutrition</p>
-      </div>
-      <div class="why-us__grid stagger-children">
-        <div class="why-us__card">
-          <div class="why-us__icon why-us__icon--gold">⚙️</div>
-          <h3>Stone-Ground Fresh</h3>
-          <p>Traditional chakki grinding preserves the natural fiber, nutrients, and flavor that modern roller mills destroy.</p>
-        </div>
-        <div class="why-us__card">
-          <div class="why-us__icon why-us__icon--green">🌿</div>
-          <h3>No Preservatives</h3>
-          <p>We grind fresh daily. Zero additives, zero preservatives, zero chemicals. Just pure, honest flour for your family.</p>
-        </div>
-        <div class="why-us__card">
-          <div class="why-us__icon why-us__icon--brown">🏆</div>
-          <h3>Premium Grains Only</h3>
-          <p>We source the finest MP Sharbati wheat and other grains directly from trusted farmers for consistent quality.</p>
-        </div>
-        <div class="why-us__card">
-          <div class="why-us__icon why-us__icon--gold">🚚</div>
-          <h3>Doorstep Delivery</h3>
-          <p>Fresh flour delivered to your door within 24 hours. Free delivery on orders above ₹500 in the city area.</p>
-        </div>
-        <div class="why-us__card">
-          <div class="why-us__icon why-us__icon--green">💰</div>
-          <h3>Fair Pricing</h3>
-          <p>Direct from our chakki to your kitchen. No middlemen means you get the best quality at the most honest prices.</p>
-        </div>
-        <div class="why-us__card">
-          <div class="why-us__icon why-us__icon--brown">🧹</div>
-          <h3>Hygiene First</h3>
-          <p>Our facility follows strict hygiene standards with regular cleaning, food-grade packaging, and quality checks.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+              <dl class="fssai-cert-table-mini">
+                <div>
+                  <dt>Food Business Operator</dt>
+                  <dd>Shree Samvriddhi Foods</dd>
+                </div>
+                <div>
+                  <dt>Kind of Business</dt>
+                  <dd>General Manufacturing</dd>
+                </div>
+                <div>
+                  <dt>Place &amp; Authority</dt>
+                  <dd>Lucknow (User ID: 109635)</dd>
+                </div>
+                <div>
+                  <dt>Annual Turnover Limit</dt>
+                  <dd>Up to ₹1.5 Crore</dd>
+                </div>
+                <div style="grid-column:1/-1;">
+                  <dt>Registered Premises Location</dt>
+                  <dd>00 Near ITI Hostel, Indaurabagh, Devrai Kala, Bakshi Ka Talab Tahsil, Lucknow, UP - 226202</dd>
+                </div>
+              </dl>
 
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="section testimonials" id="testimonials">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-header__label">Testimonials</div>
-        <h2 class="section-header__title">What Our Customers Say</h2>
-        <p class="section-header__desc">Trusted by thousands of families for their daily flour needs</p>
-      </div>
-      <div class="testimonials__grid stagger-children" id="testimonialsGrid">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CTA BANNER ===== -->
-  <section class="cta-banner">
-    <div class="container">
-      <div class="cta-banner__content reveal">
-        <h2>Order Fresh Flour Today</h2>
-        <p>Get doorstep delivery. Free shipping on orders above ₹500!</p>
-        <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-          <a href="/products.html" class="btn btn--dark btn--lg">🛒 Shop Now</a>
-          <a href="https://wa.me/919876543210?text=Hi! I'd like to order flour from Samriddhi Food" target="_blank" class="btn btn--accent btn--lg">💬 WhatsApp Order</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT SECTION ===== -->
-  <section class="section contact" id="contact">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-header__label">Get In Touch</div>
-        <h2 class="section-header__title">Visit Us or Call</h2>
-        <p class="section-header__desc">We'd love to hear from you</p>
-      </div>
-      <div class="contact__grid">
-        <div class="contact__info reveal-left">
-          <div class="contact__item">
-            <div class="contact__icon">📍</div>
-            <div>
-              <div class="contact__label">Visit our Shop</div>
-              <div class="contact__value">Main Market Road, Near Bus Stand<br>Indore, Madhya Pradesh 452001</div>
-            </div>
-          </div>
-          <div class="contact__item">
-            <div class="contact__icon">📞</div>
-            <div>
-              <div class="contact__label">Call Us</div>
-              <div class="contact__value">+91 98765 43210</div>
-            </div>
-          </div>
-          <div class="contact__item">
-            <div class="contact__icon">⏰</div>
-            <div>
-              <div class="contact__label">Working Hours</div>
-              <div class="contact__value">Mon - Sat: 7:00 AM - 8:00 PM<br>Sunday: 8:00 AM - 2:00 PM</div>
-            </div>
-          </div>
-          <div class="contact__item">
-            <div class="contact__icon">💬</div>
-            <div>
-              <div class="contact__label">WhatsApp</div>
-              <div class="contact__value">+91 98765 43210</div>
+              <div class="fssai-trust-actions">
+                <button type="button" class="btn btn--primary btn--sm fssai-trigger" data-fssai-tab="overview">
+                  📄 View Full Certificate
+                </button>
+                <button type="button" class="btn btn--secondary btn--sm fssai-trigger" data-fssai-tab="products">
+                  🌾 View Approved Products (11)
+                </button>
+                <a href="https://foscos.fssai.gov.in" target="_blank" rel="noopener noreferrer" class="btn btn--sm ghost">
+                  Verify on FoSCoS ↗
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <div class="contact__map reveal-right">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117757.69047975204!2d75.7629!3d22.7196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd15a0e86d73%3A0x8c00e0f7e2e02a32!2sIndore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1692000000000!5m2!1sen!2sin"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+      </div>
+    </section>
+
+    <!-- ===== PROMISE / MISSION / SEASON STRIP ===== -->
+    <section class="wrap block reveal">
+      <div class="strip reveal-print">
+        <div class="cell s-saffron">
+          <p class="k">The promise</p>
+          <p class="v">No preservatives, no chemicals — ever.</p>
+        </div>
+        <div class="cell s-teal">
+          <p class="k">The tradition</p>
+          <p class="v">Stone-ground on a traditional chakki since 2015.</p>
+          <a href="#why-us" class="cell-link">Read our story →</a>
+        </div>
+        <a class="cell s-coral" href="products.html?cat=millet">
+          <p class="k">Try now</p>
+          <p class="v">Millet flour — bajra, jowar, ragi & more.</p>
+          <span class="cell-link">Shop Millet Flour →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials-section" id="testimonials">
+      <div class="wrap">
+        <div class="section-header reveal">
+          <div class="section-header__label">Testimonials</div>
+          <h2 class="section-header__title">What our families say</h2>
+          <p class="section-header__desc">Trusted by thousands for their daily flour needs</p>
+        </div>
+        <div class="testimonials__grid stagger-children" id="testimonialsGrid">
+          <!-- Rendered by JS -->
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ===== CTA BANNER ===== -->
+    <section class="cta-banner">
+      <div class="wrap">
+        <div class="cta-banner__content reveal">
+          <h2>Order fresh flour today</h2>
+          <p>Get doorstep delivery. Free shipping on orders above ₹500!</p>
+          <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+            <a href="products.html" class="btn btn--dark btn--lg">Shop Now →</a>
+            <a href="https://wa.me/919876543210?text=Hi! I'd like to order flour from Shree Samvriddhi Foods" target="_blank" class="btn btn--accent btn--lg">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="manifest-head">
+          <h2>Visit our chakki</h2>
+          <span class="mcount">Devrai Kala · UP 226202</span>
+        </div>
+        <div class="contact__grid">
+          <div class="contact__info reveal">
+            <div class="contact__item">
+              <div class="contact__icon">📍</div>
+              <div>
+                <div class="contact__label">Mill Location &amp; Registered Premises</div>
+                <div class="contact__value">
+                  <strong>Shree Samvriddhi Foods &amp; Atta Chakki</strong><br>
+                  00 Near ITI Hostel, Indaurabagh, Devrai Kala, Bakshi Ka Talab Tahsil, Lucknow, Uttar Pradesh - 226202<br>
+                  <span style="display: inline-block; margin-top: 4px; font-size: 0.85em; color: var(--color-ink-muted);">
+                    FSSAI Reg. No: <strong>22726102000723</strong> · Landmark: <strong>ITI Hostel</strong> · Plus Code: <strong>XWW4+568</strong>
+                  </span>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=XWW4%2B568+Devrai+Kala+Uttar+Pradesh+226202" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--primary" style="margin-top: var(--space-3); display: inline-flex; align-items: center; gap: 6px;">
+                  Open in Google Maps ↗
+                </a>
+              </div>
+            </div>
+            <div class="contact__item">
+              <div class="contact__icon">📞</div>
+              <div>
+                <div class="contact__label">Call Us</div>
+                <div class="contact__value">+91 98765 43210</div>
+              </div>
+            </div>
+            <div class="contact__item">
+              <div class="contact__icon">⏰</div>
+              <div>
+                <div class="contact__label">Chakki Hours</div>
+                <div class="contact__value">Mon – Sat: 7:00 AM – 8:00 PM<br>Sunday: 8:00 AM – 2:00 PM</div>
+              </div>
+            </div>
+            <div class="contact__item">
+              <div class="contact__icon">💬</div>
+              <div>
+                <div class="contact__label">WhatsApp Orders</div>
+                <div class="contact__value">+91 98765 43210</div>
+              </div>
+            </div>
+          </div>
+          <div class="contact__map reveal">
+            <iframe
+              src="https://maps.google.com/maps?q=XWW4%2B568+Devrai+Kala+Uttar+Pradesh+226202&t=&z=14&ie=UTF8&iwloc=&output=embed"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Shree Samvriddhi Foods Location in Devrai Kala, UP">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="footer" id="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <a href="index.html" class="navbar__logo" style="margin-bottom: var(--space-2); display: inline-flex;">
-            <div class="navbar__logo-icon">🌾</div>
-            <div class="navbar__logo-text" style="color: var(--color-text-on-dark);">
-              Samriddhi
-              <span>Food</span>
-            </div>
+  <footer class="footer" id="footer" style="padding-top:var(--space-8);">
+    <div class="footer__inner">
+      <div>
+        <a href="index.html" class="brand" style="margin-bottom: var(--space-2); display: inline-flex;">
+          <span class="brand-text">
+            Shree Samvriddhi
+            <small>Foods · Atta Chakki</small>
+          </span>
+        </a>
+        <p class="footer__brand-desc">
+          Your trusted neighbourhood flour mill delivering freshly stone-ground atta and flour since 2015. Pure, fresh, and preservative-free — the way flour should be.
+        </p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/>
+              <circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/>
+            </svg>
           </a>
-          <p class="footer__brand-desc">
-            Your trusted neighbourhood flour mill delivering freshly stone-ground atta and flour since 2015. Pure, fresh, and preservative-free — the way flour should be.
-          </p>
-        </div>
-        <div>
-          <div class="footer__heading">Quick Links</div>
-          <a href="index.html" class="footer__link">Home</a>
-          <a href="products.html" class="footer__link">Products</a>
-          <a href="cart.html" class="footer__link">Cart</a>
-          <a href="order-tracking.html" class="footer__link">Track Order</a>
-        </div>
-        <div>
-          <div class="footer__heading">Products</div>
-          <a href="products.html?cat=wheat" class="footer__link">Wheat Atta</a>
-          <a href="products.html?cat=multigrain" class="footer__link">Multigrain Atta</a>
-          <a href="products.html?cat=besan" class="footer__link">Besan</a>
-          <a href="products.html?cat=maida" class="footer__link">Maida</a>
-          <a href="products.html?cat=rice" class="footer__link">Rice Flour</a>
-          <a href="products.html?cat=millet" class="footer__link">Millet Flour</a>
-        </div>
-        <div>
-          <div class="footer__heading">Contact</div>
-          <a href="tel:+919876543210" class="footer__link">📞 +91 98765 43210</a>
-          <a href="https://wa.me/919876543210" target="_blank" class="footer__link">💬 WhatsApp</a>
-          <a href="#" class="footer__link">📧 info@samriddhiatta.com</a>
-          <a href="#" class="footer__link">📍 Indore, MP</a>
+          <a href="#" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M15 8.5h-2c-.55 0-1 .45-1 1V12h3l-.4 3h-2.6v7h-3v-7H7v-3h2v-2.2C9 7.3 10.6 6 13 6h2v2.5Z"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/919876543210" aria-label="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M3 21l1.5-5.5A9 9 0 1 1 9 19.5L3 21Z"/>
+              <path d="M9 10a1.5 1.5 0 0 0 0 3h.5a1.5 1.5 0 0 0 1.5-1.5V10m3 0a1.5 1.5 0 0 0 0 3"/>
+            </svg>
+          </a>
         </div>
       </div>
-      <div class="footer__bottom">
-        <div>© 2024 Samriddhi Food. All rights reserved.</div>
-        <div class="footer__social">
-          <a href="#" title="Facebook">f</a>
-          <a href="#" title="Instagram">📷</a>
-          <a href="#" title="YouTube">▶</a>
+      <div>
+        <div class="footer__heading">Shop</div>
+        <a href="products.html" class="footer__link">All products</a>
+        <a href="products.html?cat=wheat" class="footer__link">Wheat Atta</a>
+        <a href="products.html?cat=multigrain" class="footer__link">Multigrain Atta</a>
+        <a href="products.html?cat=besan" class="footer__link">Besan</a>
+        <a href="products.html?cat=millet" class="footer__link">Millet Flour</a>
+        <a href="products.html?cat=rice" class="footer__link">Rice Flour</a>
+      </div>
+      <div>
+        <div class="footer__heading">More</div>
+        <a href="cart.html" class="footer__link">Cart</a>
+        <a href="order-tracking.html" class="footer__link">Track Order</a>
+        <a href="#fssai-certificate" class="footer__link">FSSAI License</a>
+        <a href="#contact" class="footer__link">Contact</a>
+        <a href="#why-us" class="footer__link">About us</a>
+      </div>
+    </div>
+
+    <!-- FSSAI Statutory Footer Block -->
+    <div class="footer__inner" style="padding-top:0;padding-bottom:var(--space-6);">
+      <div class="footer__fssai" style="grid-column:1/-1;width:100%;">
+        <div class="footer__fssai-left">
+          <img src="images/fssai-logo.svg" alt="FSSAI Logo" class="footer__fssai-logo">
+          <div class="footer__fssai-meta">
+            <div><strong>Food Safety and Standards Authority of India (FSSAI)</strong></div>
+            <div>Govt. of Uttar Pradesh Registration No: <strong>22726102000723</strong> · Valid Upto: <strong>14-09-2027</strong></div>
+            <div style="font-size:10px;color:var(--color-ink-muted);margin-top:2px;">Standardised Food Category 06.2 (Flours and Starches) · FSS Act, 2006 Compliant</div>
+          </div>
         </div>
+        <div style="display:flex;gap:var(--space-2);align-items:center;flex-wrap:wrap;">
+          <button type="button" class="btn btn--sm ghost fssai-trigger" data-fssai-tab="overview">
+            📄 View Certificate
+          </button>
+          <a href="https://foscos.fssai.gov.in" target="_blank" rel="noopener noreferrer" class="btn btn--sm ghost">
+            FoSCoS Verification ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Traditional Indian Kitchen & Farm Artwork (End of Footer Banner) -->
+    <div class="footer__art-banner">
+      <img src="images/footer-art.jpg" alt="Traditional Indian Farm and Kitchen - From field to fresh stone-ground flour" class="footer__art-img" loading="lazy">
+    </div>
+
+    <!-- Store Policies & Copyright Directly Below Artwork -->
+    <div class="footer__art-policies">
+      <div class="footer__art-policies-row">
+        <button type="button" class="footer__art-policy-link" data-open-policy="privacy">Privacy Policy</button>
+        <button type="button" class="footer__art-policy-link" data-open-policy="terms">Terms &amp; Conditions</button>
+        <button type="button" class="footer__art-policy-link" data-open-policy="shipping">Shipping Policy</button>
+      </div>
+      <div class="footer__art-policies-row">
+        <button type="button" class="footer__art-policy-link" data-open-policy="refund">Refund &amp; Replacement Policy</button>
+      </div>
+      <div class="footer__art-copyright">
+        © 2024 Shree Samvriddhi Foods. All rights reserved. | FSSAI Lic. 22726102000723
       </div>
     </div>
   </footer>
 
   <!-- WhatsApp Float -->
-  <a href="https://wa.me/919876543210?text=Hi! I'd like to order flour from Samriddhi Food" target="_blank" class="whatsapp-float" title="Chat on WhatsApp" id="whatsappFloat">
+  <a href="https://wa.me/919876543210?text=Hi! I'd like to order flour from Shree Samvriddhi Foods" target="_blank" class="whatsapp-float" title="Chat on WhatsApp" id="whatsappFloat">
     💬
   </a>
 
   <!-- Main JS -->
   <script type="module" src="js/home.js"></script>
+  <script type="module" src="js/fssai-modal.js"></script>
+  <script type="module" src="js/policy-modal.js"></script>
 </body>
 </html>

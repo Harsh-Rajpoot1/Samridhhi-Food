@@ -554,11 +554,14 @@ function getLocalStoreSettings() {
     if (saved) return JSON.parse(saved);
   } catch {}
   return {
-    storeName: 'Samriddhi Food',
+    storeName: 'Shree Samvriddhi Foods',
     phone: '+91 9876543210',
     whatsapp: '+919876543210',
-    address: 'Main Market Road, Indore, MP 452001',
-    freeDeliveryThreshold: 500
+    address: '00 Near ITI Hostel, Indaurabagh, Devrai Kala, Bakshi Ka Talab Tahsil, Lucknow, Uttar Pradesh - 226202 (Plus Code: XWW4+568)',
+    freeDeliveryThreshold: 500,
+    fssaiRegNo: '22726102000723',
+    fssaiValidUpto: '14-09-2027',
+    fssaiAddress: '00 Near ITI Hostel, Indaurabagh, Lucknow, Indara, Bakshi Ka Talab Tahsil, Lucknow, Uttar Pradesh - 226202 (Landmark: ITI Hostel)'
   };
 }
 

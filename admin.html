@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard — Samriddhi Food</title>
+  <title>Admin Dashboard — Shree Samvriddhi Foods</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/components.css">
@@ -46,7 +46,7 @@
         <a href="index.html" class="admin-sidebar__logo">
           <div class="admin-sidebar__logo-icon">🌾</div>
           <div class="admin-sidebar__logo-text">
-            Samriddhi
+            Shree Samvriddhi
             <small>Admin Panel</small>
           </div>
         </a>
@@ -126,6 +126,13 @@
               </div>
               <div class="stat-card__value" id="statProducts">0</div>
               <div class="stat-card__label">Products</div>
+            </div>
+            <div class="stat-card fssai-trigger" data-fssai-tab="overview" style="cursor:pointer;border-left:4px solid #16A34A;" title="Click to view Government FSSAI Certificate">
+              <div class="stat-card__header">
+                <div class="stat-card__icon" style="background:#DCFCE7;color:#166534;font-size:var(--text-lg);">🏛️</div>
+              </div>
+              <div class="stat-card__value" style="font-size:var(--text-base);font-weight:700;color:#166534;">FSSAI Active</div>
+              <div class="stat-card__label" style="font-family:ui-monospace,monospace;">Lic: 22726102000723</div>
             </div>
           </div>
 
@@ -266,7 +273,7 @@
                 <div class="product-form-grid">
                   <div class="form-group">
                     <label class="form-label">Store Name</label>
-                    <input type="text" class="form-input" id="settingStoreName" value="Samriddhi Food">
+                    <input type="text" class="form-input" id="settingStoreName" value="Shree Samvriddhi Foods">
                   </div>
                   <div class="form-group">
                     <label class="form-label">Phone Number</label>
@@ -282,10 +289,39 @@
                   </div>
                   <div class="form-group full-width">
                     <label class="form-label">Store Address</label>
-                    <textarea class="form-textarea" id="settingAddress">Main Market Road, Near Bus Stand, Indore, MP 452001</textarea>
+                    <textarea class="form-textarea" id="settingAddress">00 Near ITI Hostel, Indaurabagh, Devrai Kala, Bakshi Ka Talab Tahsil, Lucknow, Uttar Pradesh - 226202 (Plus Code: XWW4+568)</textarea>
+                  </div>
+
+                  <!-- FSSAI Statutory Credentials -->
+                  <div class="form-group full-width" style="border-top:1px dashed var(--border-color);padding-top:var(--space-4);margin-top:var(--space-2);">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-3);flex-wrap:wrap;gap:var(--space-2);">
+                      <div style="display:flex;align-items:center;gap:var(--space-2);">
+                        <img src="images/fssai-logo.svg" alt="FSSAI" style="height:20px;width:auto;">
+                        <span style="font-weight:700;color:#0F3A5D;font-size:var(--text-sm);">Food Safety and Standards Authority of India (FSSAI)</span>
+                      </div>
+                      <button type="button" class="btn btn--secondary btn--sm fssai-trigger" data-fssai-tab="overview">
+                        📄 View Certificate &amp; Annexure
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">FSSAI Registration Number (14 Digits) *</label>
+                    <input type="text" class="form-input" id="settingFssaiRegNo" value="22726102000723" maxlength="14" style="font-family:ui-monospace,monospace;font-weight:700;color:#0F3A5D;">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">FSSAI License Expiry / Validity Date *</label>
+                    <input type="text" class="form-input" id="settingFssaiValidUpto" value="14-09-2027">
+                  </div>
+                  <div class="form-group full-width">
+                    <label class="form-label">FSSAI Registered Premises Address</label>
+                    <textarea class="form-textarea" id="settingFssaiAddress" style="min-height:50px;">00 Near ITI Hostel, Indaurabagh, Lucknow, Indara, Bakshi Ka Talab Tahsil, Lucknow, Uttar Pradesh - 226202 (Landmark: ITI Hostel)</textarea>
                   </div>
                 </div>
-                <button type="submit" class="btn btn--primary">💾 Save Settings</button>
+                <div style="display:flex;gap:var(--space-3);margin-top:var(--space-4);">
+                  <button type="submit" class="btn btn--primary">💾 Save Settings</button>
+                  <button type="button" class="btn btn--secondary fssai-trigger" data-fssai-tab="products">🌾 Approved 11 Products Annexure</button>
+                </div>
               </form>
             </div>
           </div>
@@ -404,5 +440,6 @@
   </div>
 
   <script type="module" src="js/admin-page.js"></script>
+  <script type="module" src="js/fssai-modal.js"></script>
 </body>
 </html>

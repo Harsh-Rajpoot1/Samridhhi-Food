@@ -114,11 +114,11 @@ export function getCartTotals() {
  * Update cart badge count in navbar
  */
 export function updateCartBadge() {
-  const badge = document.querySelector('.navbar__cart-badge');
-  if (badge) {
-    const { itemCount } = getCartTotals();
+  const badges = document.querySelectorAll('.navbar__cart-badge, #cartBadge, .cartlink .count');
+  const { itemCount } = getCartTotals();
+  badges.forEach(badge => {
     badge.textContent = itemCount;
     badge.dataset.count = itemCount;
-    badge.style.display = itemCount > 0 ? 'flex' : 'none';
-  }
+    badge.style.display = itemCount > 0 ? 'inline-flex' : 'inline-flex';
+  });
 }

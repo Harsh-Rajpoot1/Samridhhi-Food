@@ -595,6 +595,9 @@ async function setupSettings() {
         if (saved.whatsapp) document.getElementById('settingWhatsapp').value = saved.whatsapp;
         if (saved.freeDeliveryThreshold) document.getElementById('settingFreeDelivery').value = saved.freeDeliveryThreshold;
         if (saved.address) document.getElementById('settingAddress').value = saved.address;
+        if (saved.fssaiRegNo) document.getElementById('settingFssaiRegNo').value = saved.fssaiRegNo;
+        if (saved.fssaiValidUpto) document.getElementById('settingFssaiValidUpto').value = saved.fssaiValidUpto;
+        if (saved.fssaiAddress) document.getElementById('settingFssaiAddress').value = saved.fssaiAddress;
       }
     } catch (err) {
       console.error('Error loading settings:', err);
@@ -607,12 +610,15 @@ async function setupSettings() {
         phone: document.getElementById('settingPhone').value,
         whatsapp: document.getElementById('settingWhatsapp').value,
         freeDeliveryThreshold: parseFloat(document.getElementById('settingFreeDelivery').value) || 500,
-        address: document.getElementById('settingAddress').value
+        address: document.getElementById('settingAddress').value,
+        fssaiRegNo: document.getElementById('settingFssaiRegNo').value,
+        fssaiValidUpto: document.getElementById('settingFssaiValidUpto').value,
+        fssaiAddress: document.getElementById('settingFssaiAddress').value
       };
       
       try {
         await updateStoreSettings(settings);
-        showToast('Settings saved successfully!', 'success');
+        showToast('Settings & FSSAI credentials saved successfully!', 'success');
       } catch (err) {
         console.error('Error saving settings:', err);
         showToast('Error saving settings', 'error');

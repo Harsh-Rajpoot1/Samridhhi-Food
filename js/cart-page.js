@@ -32,7 +32,7 @@ function renderCart() {
   if (cart.length === 0) {
     cartLayout.style.display = 'none';
     emptyCart.style.display = 'block';
-    if (headerCount) headerCount.textContent = 'Your cart is empty';
+    if (headerCount) headerCount.textContent = '0 items in your cart';
     return;
   }
 

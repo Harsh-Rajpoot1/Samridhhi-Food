@@ -258,22 +258,22 @@ export const SAMPLE_ORDERS = [
 export const SAMPLE_TESTIMONIALS = [
   {
     name: 'Sunita Devi',
-    location: 'Indore',
+    location: 'Devrai Kala',
     initials: 'SD',
-    text: 'The wheat atta from Samriddhi is simply the best! My rotis come out soft and fresh every time. Been buying for 2 years now.',
+    text: 'The wheat atta from Shree Samvriddhi Foods is simply the best! My rotis come out soft and fresh every time. Fresh chakki aroma every day.',
     rating: 5
   },
   {
     name: 'Ramesh Gupta',
-    location: 'Dewas',
+    location: 'Lucknow Region',
     initials: 'RG',
-    text: 'Their multigrain atta has improved our family\'s health. The quality is consistent and delivery is always on time. Highly recommended!',
+    text: 'Their multigrain atta has improved our family\'s health. The quality is consistent and fresh delivery is always on time. Highly recommended!',
     rating: 5
   },
   {
-    name: 'Neha Joshi',
-    location: 'Ujjain',
-    initials: 'NJ',
+    name: 'Neha Verma',
+    location: 'Mohanlalganj',
+    initials: 'NV',
     text: 'Fresh besan with amazing aroma! My pakoras have never been better. The stone-ground texture makes all the difference.',
     rating: 5
   }
@@ -320,7 +320,7 @@ export function getProductPlaceholder(product) {
       <rect width="400" height="400" fill="url(#bg)"/>
       <text x="200" y="180" text-anchor="middle" font-size="80">${icon}</text>
       <text x="200" y="240" text-anchor="middle" font-family="system-ui" font-size="16" font-weight="600" fill="${color}">${product.name}</text>
-      <text x="200" y="265" text-anchor="middle" font-family="system-ui" font-size="13" fill="#9C8578">Samriddhi Food</text>
+      <text x="200" y="265" text-anchor="middle" font-family="system-ui" font-size="13" fill="#9C8578">Shree Samvriddhi Foods</text>
     </svg>
   `)}`;
 }

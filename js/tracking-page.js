@@ -158,6 +158,19 @@ function renderOrderTracking(order) {
         <div style="font-size:var(--text-sm);color:var(--color-text-secondary);">${order.address}${order.city ? ', ' + order.city : ''} - ${order.pincode}</div>
         <div style="font-size:var(--text-sm);color:var(--color-text-secondary);">📞 ${order.phone}</div>
       </div>
+
+      <!-- FSSAI Compliance on Order Receipt -->
+      <div style="margin-top:var(--space-4);padding:var(--space-3);background:var(--color-ivory);border:1px dashed var(--border-color);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:var(--space-2);">
+          <img src="images/fssai-logo.svg" alt="FSSAI" style="height:18px;width:auto;">
+          <div style="font-size:11px;color:var(--color-ink-soft);">
+            Manufactured &amp; packed by <strong>Shree Samvriddhi Foods</strong> · FSSAI Lic. <strong style="font-family:ui-monospace,monospace;color:#0F3A5D;">22726102000723</strong>
+          </div>
+        </div>
+        <button type="button" class="fssai-trigger" data-fssai-tab="overview" style="background:none;border:none;padding:0;font-size:10px;color:var(--color-saffron-deep);text-decoration:underline;cursor:pointer;">
+          View Certificate ↗
+        </button>
+      </div>
     </div>
   `;
 }
