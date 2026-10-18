@@ -8,3 +8,6 @@ dist/
 .vscode/
 package-lock.json.log
 *.log
+
+.vercel
+.env*
