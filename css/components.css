@@ -1621,6 +1621,35 @@
   letter-spacing: 0.05em;
 }
 
+.fssai-cert-address-block {
+  background: #ffffff;
+  border: 1px solid rgba(15, 58, 93, 0.12);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+}
+
+.fssai-cert-address-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-ink-muted);
+  font-weight: var(--weight-bold);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fssai-cert-address-val {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+
 .fssai-cert-table-mini {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
